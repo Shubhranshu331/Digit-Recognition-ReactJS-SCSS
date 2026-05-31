@@ -1,0 +1,553 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$neon: #00ffcc;
+$pink: #ff737e;
+$dark: #0a0a0f;
+$dark2: #12121a;
+$dark3: #1a1a26;
+$white: #f0f0f0;
+$font: Arial, Helvetica, sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font;
+  background: $dark;
+  color: $white;
+}
+
+// ─── Scroll Progress ───────────────────────────────────────────────────────────
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, $neon, $pink);
+  z-index: 1000;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px $neon;
+}
+
+// ─── Top Button ───────────────────────────────────────────────────────────────
+.top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 10px 16px;
+  background: $dark2;
+  color: $neon;
+  border: 1px solid $neon;
+  cursor: pointer;
+  z-index: 1000;
+  font-family: $font;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $neon;
+    color: $dark;
+    box-shadow: 0 0 16px $neon;
+  }
+}
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+.explore-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: $font;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+  transition: all 0.25s;
+
+  &.primary {
+    background: $neon;
+    color: $dark;
+    border-color: $neon;
+
+    &:hover {
+      background: transparent;
+      color: $neon;
+      box-shadow: 0 0 20px rgba($neon, 0.4);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.secondary {
+    background: transparent;
+    color: $white;
+    border-color: rgba($white, 0.3);
+
+    &:hover {
+      border-color: $pink;
+      color: $pink;
+      box-shadow: 0 0 16px rgba($pink, 0.3);
+    }
+  }
+}
+
+// ─── Fade Animation ───────────────────────────────────────────────────────────
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ─── Parallax Shell ───────────────────────────────────────────────────────────
+.Parallax {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: $dark;
+
+  &__background,
+  &__background-triangles {
+    width: 100%;
+    height: 1280px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &__background {
+    background-image: url("background.png");
+    // fallback gradient when image missing
+    background-color: $dark;
+  }
+
+  &__background-triangles {
+    background-image: url("background-triangles.png");
+  }
+
+  // ─── Content ────────────────────────────────────────────────────────────────
+  &__content {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    padding: 0 20px 120px;
+    margin-top: 100px;
+    gap: 0;
+
+    // ─── Hero Heading ─────────────────────────────────────────────────────────
+    &__heading {
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      padding: 60px 48px;
+      background: rgba($dark2, 0.9);
+      border: 1px solid rgba($neon, 0.2);
+      backdrop-filter: blur(12px);
+      position: relative;
+
+      .hero-badge {
+        display: inline-block;
+        padding: 6px 14px;
+        background: rgba($neon, 0.1);
+        border: 1px solid rgba($neon, 0.3);
+        color: $neon;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      &__text {
+        margin: 0 0 16px;
+        font-size: 72px;
+        line-height: 1.05;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        color: $white;
+
+        .accent {
+          color: $neon;
+          text-shadow: 0 0 30px rgba($neon, 0.5);
+        }
+      }
+
+      &__caption {
+        margin: 0 0 32px;
+        font-size: 17px;
+        line-height: 1.65;
+        color: rgba($white, 0.65);
+        font-weight: 400;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    // ─── CTA Cards ────────────────────────────────────────────────────────────
+    &__cta {
+      width: 100%;
+      max-width: 780px;
+      padding: 48px;
+      background: rgba($dark2, 0.85);
+      border: 1px solid rgba($white, 0.08);
+      margin-top: 80px;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.3s;
+
+      &:hover {
+        border-color: rgba($neon, 0.25);
+      }
+
+      .section-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: $neon;
+        margin-bottom: 12px;
+      }
+
+      h3 {
+        margin: 0 0 20px;
+        font-size: 32px;
+        font-weight: 800;
+        color: $white;
+        letter-spacing: -0.01em;
+      }
+
+      p {
+        margin: 0 0 12px;
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgba($white, 0.7);
+      }
+    }
+  }
+}
+
+// ─── Stats Row ────────────────────────────────────────────────────────────────
+.stat-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+
+  .stat {
+    flex: 1;
+    min-width: 100px;
+    padding: 20px;
+    background: rgba($dark3, 0.8);
+    border: 1px solid rgba($neon, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    &-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: $neon;
+      text-shadow: 0 0 12px rgba($neon, 0.4);
+    }
+
+    &-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba($white, 0.5);
+    }
+  }
+}
+
+// ─── Demo Section ─────────────────────────────────────────────────────────────
+.demo-section {
+  .demo-subtitle {
+    color: rgba($white, 0.6);
+    margin-bottom: 32px;
+  }
+
+  .demo-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+// ─── Canvas ───────────────────────────────────────────────────────────────────
+.canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .canvas-label {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba($white, 0.4);
+  }
+
+  .digit-canvas {
+    width: 280px;
+    height: 280px;
+    border: 2px solid rgba($neon, 0.3);
+    cursor: crosshair;
+    display: block;
+    touch-action: none;
+    background: #000;
+    box-shadow: 0 0 24px rgba($neon, 0.1);
+
+    &:hover {
+      border-color: $neon;
+      box-shadow: 0 0 32px rgba($neon, 0.2);
+    }
+  }
+
+  .canvas-actions {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+// ─── Result Panel ─────────────────────────────────────────────────────────────
+.result-panel {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .result-digit {
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    color: $neon;
+    text-shadow: 0 0 40px rgba($neon, 0.6);
+  }
+
+  .result-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba($white, 0.4);
+    margin-top: -8px;
+  }
+
+  .confidence-bar-wrapper {
+    .confidence-bar-label {
+      font-size: 13px;
+      color: rgba($white, 0.6);
+      margin-bottom: 6px;
+
+      strong {
+        color: $white;
+      }
+    }
+
+    .confidence-bar-track {
+      height: 6px;
+      background: rgba($white, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .confidence-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, $neon, lighten($neon, 10%));
+      border-radius: 3px;
+      transition: width 0.5s ease;
+      box-shadow: 0 0 8px rgba($neon, 0.5);
+    }
+  }
+
+  .result-error {
+    padding: 14px 18px;
+    background: rgba($pink, 0.1);
+    border: 1px solid rgba($pink, 0.3);
+    color: $pink;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .result-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 160px;
+    gap: 12px;
+    color: rgba($white, 0.25);
+
+    .placeholder-icon {
+      font-size: 40px;
+      opacity: 0.4;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+}
+
+// ─── Probability Grid ─────────────────────────────────────────────────────────
+.prob-grid {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  margin-top: 8px;
+
+  .prob-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+
+    &.active .prob-digit {
+      color: $neon;
+    }
+
+    &.active .prob-bar-fill {
+      background: $neon;
+      box-shadow: 0 0 8px rgba($neon, 0.5);
+    }
+
+    .prob-digit {
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba($white, 0.4);
+    }
+
+    .prob-bar-track {
+      width: 100%;
+      height: 60px;
+      background: rgba($white, 0.06);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .prob-bar-fill {
+      width: 100%;
+      background: rgba($pink, 0.5);
+      border-radius: 2px 2px 0 0;
+      transition: height 0.4s ease;
+    }
+
+    .prob-pct {
+      font-size: 9px;
+      color: rgba($white, 0.3);
+    }
+  }
+}
+
+// ─── Tech Grid ────────────────────────────────────────────────────────────────
+.tech-section {
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .tech-card {
+    padding: 20px 16px;
+    background: rgba($dark3, 0.8);
+    border: 1px solid rgba($white, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s, transform 0.2s;
+
+    &:hover {
+      border-color: rgba($neon, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .tech-icon {
+      font-size: 22px;
+    }
+
+    strong {
+      font-size: 14px;
+      color: $white;
+    }
+
+    span {
+      font-size: 12px;
+      color: rgba($white, 0.45);
+    }
+  }
+}
+
+// ─── GitHub Section ───────────────────────────────────────────────────────────
+.github-section {
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+  .Parallax__content {
+    padding: 0 12px 80px;
+    margin-top: 60px;
+
+    &__heading {
+      padding: 40px 24px;
+
+      &__text {
+        font-size: 48px;
+      }
+
+      &__caption {
+        font-size: 15px;
+      }
+    }
+
+    &__cta {
+      padding: 32px 20px;
+    }
+  }
+
+  .demo-layout {
+    flex-direction: column;
+  }
+
+  .digit-canvas {
+    width: 100% !important;
+  }
+
+  .stat-row {
+    gap: 12px;
+
+    .stat {
+      padding: 14px 8px;
+    }
+  }
+}

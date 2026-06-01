@@ -5,11 +5,11 @@
 ```
 digit-recognition/
 ├── backend/
-│   ├── main.py                   # FastAPI app
+│   ├── main.py                   
 │   ├── requirements.txt
-│   ├── Procfile                  # Render start command
-│   ├── render.yaml               # Render config
-│   └── digits_recognition_cnn.h5 # ← put your model here
+│   ├── Procfile                  
+│   ├── render.yaml              
+│   └── digits_recognition_cnn.h5 
 │
 └── frontend/
     ├── src/

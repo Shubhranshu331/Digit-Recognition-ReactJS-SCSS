@@ -5,7 +5,6 @@ backend/__pycache__/
 
 # Node
 frontend/node_modules/
-frontend/build/
 
 # Env files
 frontend/.env.local 
